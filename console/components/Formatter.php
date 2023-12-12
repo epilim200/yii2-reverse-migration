@@ -100,7 +100,11 @@ trait Formatter
         foreach ($data as $row) {
             $rows = '';
             foreach ($row as $value) {
-                $rows .= "'" . addslashes($value) . "',";
+                if(!is_null($value)) {
+                    $rows .= "'" . addslashes($value) . "',";
+                }else{
+                    $rows .= "'',";
+                }
             }
             self::$rows .= "\n\t\t\t" . self::dataFormat($rows) . ",";
         }
